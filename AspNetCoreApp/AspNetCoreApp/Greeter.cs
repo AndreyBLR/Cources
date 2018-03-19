@@ -13,7 +13,7 @@ namespace AspNetCoreApp
 
         public string GetGreeting()
         {
-            return $"Greeting, {_config["username"]}!";
+            return $"{_config["Greeting"]}, {_config["username"]}!";
         }
     }
 }

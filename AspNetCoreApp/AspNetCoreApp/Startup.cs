@@ -26,24 +26,14 @@ namespace AspNetCoreApp
                               ILogger<Startup> logger,
                               IGreeter greeter)
         {
-            app.Use(next =>
-            {
-                return async context =>
-                {
-                    if (context.Request.Path.StartsWithSegments("/greeting"))
-                    {
-                        logger.LogInformation("Greeting.");
-                        await context.Response.WriteAsync(greeter.GetGreeting());
-                    }
-                    else
-                    {
-                        logger.LogInformation("Next.");
-                        await next(context);
-                    }
-                };
-            });
+            if (env.IsDevelopment())
+                app.UseDeveloperExceptionPage();
 
-            app.UseWelcomePage();
+            app.Run(async context =>
+            {
+                await context.Response.WriteAsync($"{greeter.GetGreeting() + Environment.NewLine}");
+                await context.Response.WriteAsync($"Environment Name: {env.EnvironmentName}");
+            });
         }
     }
 }
