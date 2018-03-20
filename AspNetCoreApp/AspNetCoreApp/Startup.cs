@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -31,14 +32,18 @@ namespace AspNetCoreApp
                 app.UseDeveloperExceptionPage();
 
             app.UseStaticFiles();
-            app.UseMvcWithDefaultRoute();
+            
+            app.UseMvc(ConfigureRoutes);
 
             app.Run(async context =>
             {
-                await context.Response.WriteAsync($"Environment Name: {env.EnvironmentName + Environment.NewLine}");
-                await context.Response.WriteAsync($"{ greeter.GetGreeting() }");
-                
+                await context.Response.WriteAsync($"Not found!");
             });
+        }
+
+        private void ConfigureRoutes(IRouteBuilder routeBuilder)
+        {
+            routeBuilder.MapRoute("Default", "{controller}/{action=Index}/{id?}");
         }
     }
 }
