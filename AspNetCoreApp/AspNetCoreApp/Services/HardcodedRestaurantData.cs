@@ -24,5 +24,10 @@ namespace AspNetCoreApp.Services
         {
             return _restaurants;
         }
+
+        public Restaurant Get(int id)
+        {
+            return _restaurants.FirstOrDefault(item => item.Id == id);
+        }
     }
 }

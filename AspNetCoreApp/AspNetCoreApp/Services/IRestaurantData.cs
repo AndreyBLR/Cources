@@ -9,5 +9,6 @@ namespace AspNetCoreApp.Services
     public interface IRestaurantData
     {
         IList<Restaurant> GetAll();
+        Restaurant Get(int id);
     }
 }
