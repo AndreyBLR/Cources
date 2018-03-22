@@ -3,16 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AspNetCoreApp.Models;
+using AspNetCoreApp.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetCoreApp.Controllers
 {
-    public class HomeController:Controller
+    public class HomeController : Controller
     {
+        private IRestaurantData _restaurantData;
+
+        public HomeController(IRestaurantData restaurantData)
+        {
+            _restaurantData = restaurantData;
+        }
+
         public IActionResult Index()
         {
-            var model = new Restaurant() {Id = 1, Name = "Pomidor"};
-            return new ObjectResult(model);
+            return View("Index", _restaurantData.GetAll());
         }
     }
 }
