@@ -9,5 +9,7 @@ namespace AspNetCoreApp.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+
+        public CuisineType CuisineType { get; set; }
     }
 }

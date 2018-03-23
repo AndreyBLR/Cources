@@ -40,5 +40,10 @@ namespace AspNetCoreApp.Controllers
 
             return View(model);
         }
+
+        public IActionResult Create()
+        {
+            return View("Create");
+        }
     }
 }
