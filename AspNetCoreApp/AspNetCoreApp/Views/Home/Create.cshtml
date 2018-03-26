@@ -1,14 +1,22 @@
-﻿@using AspNetCoreApp.Models
-@model AspNetCoreApp.Models.Restaurant
+﻿@using AspNetCoreApp.Models;
+@model AspNetCoreApp.ViewModels.Home.RestaurantEditModel
 
 <h1>Create</h1>
 
 <form method="post">
-    <input asp-for="Name" />
+    <div>
+        <label asp-for="Name"></label>
+        <input asp-for="Name" />
+        <span asp-validation-for="Name"></span>
+    </div>
 
-    <select asp-for="CuisineType" asp-items="@Html.GetEnumSelectList<CuisineType>()">
-        <option value="value" />
-    </select>
+    <div>
+        <label asp-for="CuisineType"></label>
+        <select asp-for="CuisineType" asp-items="@Html.GetEnumSelectList<CuisineType>()">
+            <option value="value" />
+        </select>
+    </div>
 
-    <input type="submit" name="save" value="Save"/>
+    <input type="submit" name="save" value="Save" />
 </form>
+<div asp-validation-summary="ModelOnly"></div>

@@ -50,15 +50,22 @@ namespace AspNetCoreApp.Controllers
         [HttpPost]
         public IActionResult Create(RestaurantEditModel restaurantEditModel)
         {
-            var newRestaurant = new Restaurant()
+            if (ModelState.IsValid)
             {
-                Name = restaurantEditModel.Name,
-                CuisineType = restaurantEditModel.CuisineType
-            };
+                var newRestaurant = new Restaurant()
+                {
+                    Name = restaurantEditModel.Name,
+                    CuisineType = restaurantEditModel.CuisineType
+                };
 
-            _restaurantData.Add(newRestaurant);
+                _restaurantData.Add(newRestaurant);
 
-            return RedirectToAction(nameof(Details), new {id = newRestaurant.Id});
+                return RedirectToAction(nameof(Details), new { id = newRestaurant.Id });
+            }
+            else
+            {
+                return View();
+            }
         }
     }
 }
