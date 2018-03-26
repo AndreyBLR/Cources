@@ -7,7 +7,7 @@
     <input asp-for="Name" />
 
     <select asp-for="CuisineType" asp-items="@Html.GetEnumSelectList<CuisineType>()">
-        <option value="value">text</option>
+        <option value="value" />
     </select>
 
     <input type="submit" name="save" value="Save"/>

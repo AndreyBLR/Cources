@@ -41,9 +41,24 @@ namespace AspNetCoreApp.Controllers
             return View(model);
         }
 
+        [HttpGet]
         public IActionResult Create()
         {
             return View("Create");
+        }
+
+        [HttpPost]
+        public IActionResult Create(RestaurantEditModel restaurantEditModel)
+        {
+            var newRestaurant = new Restaurant()
+            {
+                Name = restaurantEditModel.Name,
+                CuisineType = restaurantEditModel.CuisineType
+            };
+
+            _restaurantData.Add(newRestaurant);
+
+            return RedirectToAction(nameof(Details), new {id = newRestaurant.Id});
         }
     }
 }

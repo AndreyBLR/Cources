@@ -29,5 +29,12 @@ namespace AspNetCoreApp.Services
         {
             return _restaurants.FirstOrDefault(item => item.Id == id);
         }
+
+        public void Add(Restaurant newRestaurant)
+        {
+            newRestaurant.Id = _restaurants.Max(item => item.Id) + 1;
+
+            _restaurants.Add(newRestaurant);
+        }
     }
 }

@@ -10,5 +10,6 @@ namespace AspNetCoreApp.Services
     {
         IList<Restaurant> GetAll();
         Restaurant Get(int id);
+        void Add(Restaurant newRestaurant);
     }
 }
