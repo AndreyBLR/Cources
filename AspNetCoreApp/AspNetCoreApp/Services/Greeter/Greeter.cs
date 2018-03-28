@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Configuration;
 
-namespace AspNetCoreApp
+namespace AspNetCoreApp.Services.Greeter
 {
     public class Greeter : IGreeter
     {

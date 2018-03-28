@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using AspNetCoreApp.Models;
 
-namespace AspNetCoreApp.Services
+namespace AspNetCoreApp.Services.RestaurantData
 {
     public class HardcodedRestaurantData:IRestaurantData
     {
@@ -30,11 +28,13 @@ namespace AspNetCoreApp.Services
             return _restaurants.FirstOrDefault(item => item.Id == id);
         }
 
-        public void Add(Restaurant newRestaurant)
+        public Restaurant Add(Restaurant newRestaurant)
         {
             newRestaurant.Id = _restaurants.Max(item => item.Id) + 1;
 
             _restaurants.Add(newRestaurant);
+
+            return newRestaurant;
         }
     }
 }

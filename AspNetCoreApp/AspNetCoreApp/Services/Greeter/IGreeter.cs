@@ -1,4 +1,4 @@
-﻿namespace AspNetCoreApp
+﻿namespace AspNetCoreApp.Services.Greeter
 {
     public interface IGreeter
     {

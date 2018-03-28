@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using AspNetCoreApp.Models;
 using AspNetCoreApp.Services;
+using AspNetCoreApp.Services.Greeter;
+using AspNetCoreApp.Services.RestaurantData;
 using AspNetCoreApp.ViewModels.Home;
 using Microsoft.AspNetCore.Mvc;
 
