@@ -1,27 +1,28 @@
-﻿@model AspNetCoreApp.ViewModels.Home.IndexViewModel
+﻿@model IndexViewModel
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title></title>
-</head>
-<body>
-    <h1>@Model.MessageOfDay</h1>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<h1>All Restaurants</h1>
     
-    <table>
-        @foreach (var restaurant in Model.Restaurants)
-        {
-            <tr>
-                <td>@restaurant.Id</td>
-                <td>@restaurant.Name</td>
-                <td>
-                    <a asp-action="Details" asp-route-id="@restaurant.Id">Open</a>
-                </td>
-            </tr>
-        }
+<table>
+    @foreach (var restaurant in Model.Restaurants)
+    {
+        <tr>
+            <td>@restaurant.Id</td>
+            <td>@restaurant.Name</td>
+            <td>
+                <a asp-action="Details" asp-route-id="@restaurant.Id">Open</a>
+            </td>
+        </tr>
+    }
         
-    </table>
+</table>
     
-    <a asp-action="Create">Create</a>
+<a asp-action="Create">Create</a>
 
-</body>
-</html>
+@section footer { 
+	@Model.MessageOfDay
+}

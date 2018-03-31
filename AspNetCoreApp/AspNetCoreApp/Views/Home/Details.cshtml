@@ -1,13 +1,16 @@
-﻿@model AspNetCoreApp.Models.Restaurant
+﻿@model Restaurant
 
-<!DOCTYPE html>
+@{
+	ViewBag.Title = "Details Page";
+}
 
-<html>
-<head>
-    <title>@Model.Name</title>
-</head>
-<body>
-    <h1>@Model.Id</h1>
-    <h6>@Model.Name</h6>
-</body>
-</html>
+<h1>@Model.Name</h1>
+
+<div>
+    @Model.Id
+</div>
+<div>
+    @Model.CuisineType
+</div>
+
+<a asp-action="Index" asp-controller="Home">Home</a>
