@@ -33,7 +33,7 @@ namespace AspNetCoreApp
             services.AddSingleton<IGreeter, Greeter>();
 
             services.AddDbContext<AppDbContext>(options=>options.UseSqlServer(_configuration.GetConnectionString("AppDb")));
-            services.AddScoped<IRestaurantData, SqlRestaurantData>();
+            services.AddScoped<IRestaurantData, HardcodedRestaurantData>();
             services.AddMvc();
         }
 
