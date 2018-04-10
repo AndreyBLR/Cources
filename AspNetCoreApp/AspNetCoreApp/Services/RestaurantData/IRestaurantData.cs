@@ -8,5 +8,6 @@ namespace AspNetCoreApp.Services.RestaurantData
         IList<Restaurant> GetAll();
         Restaurant Get(int id);
         Restaurant Add(Restaurant newRestaurant);
+        Restaurant Update(Restaurant restaurant);
     }
 }

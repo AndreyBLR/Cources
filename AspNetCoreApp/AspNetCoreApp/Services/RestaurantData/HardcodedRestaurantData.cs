@@ -36,5 +36,10 @@ namespace AspNetCoreApp.Services.RestaurantData
 
             return newRestaurant;
         }
+
+        public Restaurant Update(Restaurant restaurant)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

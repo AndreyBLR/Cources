@@ -2,6 +2,7 @@
 using System.Linq;
 using AspNetCoreApp.Data;
 using AspNetCoreApp.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace AspNetCoreApp.Services.RestaurantData
 {
@@ -30,6 +31,14 @@ namespace AspNetCoreApp.Services.RestaurantData
             _context.SaveChanges();
 
             return newRestaurant;
+        }
+
+        public Restaurant Update(Restaurant restaurant)
+        {
+            _context.Attach(restaurant).State = EntityState.Modified;
+            _context.SaveChanges();
+
+            return restaurant;
         }
     }
 }

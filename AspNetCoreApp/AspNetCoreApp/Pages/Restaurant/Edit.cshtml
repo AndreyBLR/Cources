@@ -1,0 +1,41 @@
+﻿@page "{id}"
+@model AspNetCoreApp.Pages.Restaurant.EditModel
+@{
+	Layout = "_Layout";
+	ViewBag.Title = "Edit Page";
+}
+
+<h1>Edit @Model.Restaurant.Name</h1>
+
+<form method="post" >
+	<input type="hidden" asp-for="Restaurant.Id" />
+	<div>
+		<label asp-for="Restaurant.Name" ></label>
+		<input asp-for="Restaurant.Name" />
+		<span asp-validation-for="Restaurant.Name" ></span>
+	</div>
+
+	<div>
+		<label
+			asp-for="Restaurant.CuisineType" ></label>
+		<select
+			asp-for="Restaurant.CuisineType"
+			asp-items="@Html.GetEnumSelectList<CuisineType>()" >
+			<option value="value" />
+		</select>
+	</div>
+
+	<input
+		type="submit"
+		name="save"
+		value="Save" />
+</form>
+<div asp-validation-summary="ModelOnly"></div>
+
+
+
+
+
+@section footer {
+ @Model.MessageOfDay
+}
