@@ -7,10 +7,12 @@ using AspNetCoreApp.Services;
 using AspNetCoreApp.Services.Greeter;
 using AspNetCoreApp.Services.RestaurantData;
 using AspNetCoreApp.ViewModels.Home;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetCoreApp.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly IGreeter _greeter;
@@ -22,6 +24,7 @@ namespace AspNetCoreApp.Controllers
             _restaurantData = restaurantData;
         }
 
+        [AllowAnonymous]
         public IActionResult Index()
         {
             var viewModel = new IndexViewModel()

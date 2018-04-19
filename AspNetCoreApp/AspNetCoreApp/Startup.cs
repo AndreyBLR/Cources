@@ -6,9 +6,12 @@ using AspNetCoreApp.Data;
 using AspNetCoreApp.Services;
 using AspNetCoreApp.Services.Greeter;
 using AspNetCoreApp.Services.RestaurantData;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Rewrite;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -30,10 +33,21 @@ namespace AspNetCoreApp
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+            })
+                .AddOpenIdConnect(options =>
+            {
+                _configuration.Bind("AzureAd", options);
+            })
+                .AddCookie();
+
             services.AddSingleton<IGreeter, Greeter>();
 
             services.AddDbContext<AppDbContext>(options=>options.UseSqlServer(_configuration.GetConnectionString("AppDb")));
-            services.AddScoped<IRestaurantData, SqlRestaurantData>();
+            services.AddScoped<IRestaurantData, HardcodedRestaurantData>();
             services.AddMvc();
         }
 
@@ -46,8 +60,12 @@ namespace AspNetCoreApp
             if (env.IsDevelopment())
                 app.UseDeveloperExceptionPage();
 
+            app.UseRewriter(new RewriteOptions().AddRedirectToHttpsPermanent());
+
             app.UseStaticFiles();
-            
+
+            app.UseAuthentication();
+
             app.UseMvc(ConfigureRoutes);
 
             app.Run(async context =>

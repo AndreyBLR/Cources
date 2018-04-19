@@ -12,6 +12,23 @@
     <br />
     <div>
         <vc:greeter></vc:greeter>
+        @if (User.Identity.IsAuthenticated)
+        {
+            foreach (var claimsIdentity in User.Identities)
+            {
+                <h3>@claimsIdentity.Name</h3>
+                <ul>
+                    @foreach (var claim in claimsIdentity.Claims)
+                    {
+                        <li>@claim.Type - @claim.Value</li>
+                    }
+                </ul>
+            }
+        }
+        else
+        {
+            <div>You are anonymous</div>
+        }
     </div>
     <br />
     <div>From Layout: @DateTime.Now.Date</div>

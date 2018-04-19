@@ -4,11 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using AspNetCoreApp.Services.Greeter;
 using AspNetCoreApp.Services.RestaurantData;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace AspNetCoreApp.Pages.Restaurant
 {
+    [Authorize]
     public class EditModel : PageModel
     {
         private readonly IGreeter _greeter;
