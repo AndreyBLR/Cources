@@ -9,10 +9,15 @@
     <div>
         @RenderBody()
     </div>
-	<br />
-	<div>From Layout: @DateTime.Now.Date</div>
+    <br />
+    <div>
+        <vc:greeter></vc:greeter>
+    </div>
+    <br />
+    <div>From Layout: @DateTime.Now.Date</div>
+    <br />
 	<footer>
-		From Footer: @RenderSection("footer", false);
+	    From Footer: @RenderSection("footer", false)
 	</footer>
 </body>
 </html>
