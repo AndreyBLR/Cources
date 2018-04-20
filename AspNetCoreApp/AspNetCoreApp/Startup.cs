@@ -47,7 +47,7 @@ namespace AspNetCoreApp
             services.AddSingleton<IGreeter, Greeter>();
 
             services.AddDbContext<AppDbContext>(options=>options.UseSqlServer(_configuration.GetConnectionString("AppDb")));
-            services.AddScoped<IRestaurantData, HardcodedRestaurantData>();
+            services.AddScoped<IRestaurantData, SqlRestaurantData>();
             services.AddMvc();
         }
 
@@ -61,17 +61,14 @@ namespace AspNetCoreApp
                 app.UseDeveloperExceptionPage();
 
             app.UseRewriter(new RewriteOptions().AddRedirectToHttpsPermanent());
-
+            
             app.UseStaticFiles();
+
+            app.UseNodeModules(env.ContentRootPath);
 
             app.UseAuthentication();
 
             app.UseMvc(ConfigureRoutes);
-
-            app.Run(async context =>
-            {
-                await context.Response.WriteAsync($"Not found!");
-            });
         }
 
         private void ConfigureRoutes(IRouteBuilder routeBuilder)

@@ -10,8 +10,7 @@ namespace AspNetCoreApp.Models
     {
         public int Id { get; set; }
 
-        [Required, MinLength(10)]
-        [Display(Name = "Restaurant Name")]
+        [Required, MinLength(10), Display(Name = "Restaurant Name")]
         public string Name { get; set; }
 
         public CuisineType CuisineType { get; set; }

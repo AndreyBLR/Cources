@@ -4,37 +4,51 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
+    <link href="~/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
 </head>
 <body>
-    <div>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">AspNetCoreApp</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
         @RenderBody()
-    </div>
-    <br />
-    <div>
-        <vc:greeter></vc:greeter>
-        @if (User.Identity.IsAuthenticated)
-        {
-            foreach (var claimsIdentity in User.Identities)
+        <footer>
+            From Footer: @RenderSection("footer", false)
+        </footer>
+        <br />
+        <br />
+        <br />
+        <div>
+            <vc:greeter></vc:greeter>
+            <br />
+            <br />
+            <br />
+            @if (User.Identity.IsAuthenticated)
             {
-                <h3>@claimsIdentity.Name</h3>
-                <ul>
-                    @foreach (var claim in claimsIdentity.Claims)
-                    {
-                        <li>@claim.Type - @claim.Value</li>
-                    }
-                </ul>
+                foreach (var claimsIdentity in User.Identities)
+                {
+                    <h3>@claimsIdentity.Name</h3>
+                    <ul>
+                        @foreach (var claim in claimsIdentity.Claims)
+                        {
+                            <li>@claim.Type - @claim.Value</li>
+                        }
+                    </ul>
+                }
             }
-        }
-        else
-        {
-            <div>You are anonymous</div>
-        }
+            else
+            {
+                <div>You are anonymous</div>
+            }
+        </div>
     </div>
     <br />
-    <div>From Layout: @DateTime.Now.Date</div>
-    <br />
-	<footer>
-	    From Footer: @RenderSection("footer", false)
-	</footer>
+    <script src="~/node_modules/jquery/dist/jquery.js"></script>
+    <script src="~/node_modules/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/node_modules/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
 </body>
 </html>

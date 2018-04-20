@@ -9,8 +9,9 @@ namespace AspNetCoreApp.ViewModels.Home
 {
     public class RestaurantEditModel
     {
-        
+        [Required, MinLength(10), Display(Name = "Restaurant Name")]
         public string Name { get; set; }
+
         public CuisineType CuisineType { get; set; }
     }
 }
