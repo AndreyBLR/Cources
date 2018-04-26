@@ -8,3 +8,7 @@
 /AspNetCoreApp/AspNetCoreApp/bin/
 /AspNetCoreApp/AspNetCoreApp/AspNetCoreApp.csproj.user
 /AspNetCoreApp/AspNetCoreApp/node_modules
+/Pluralsight/Developing with .NET on Azure/.vs/vs-aspnetcoremvc-site/v15/
+/Pluralsight/Developing with .NET on Azure/vs-aspnetcoremvc-site/bin/
+/Pluralsight/Developing with .NET on Azure/vs-aspnetcoremvc-site/obj/
+/Pluralsight/Developing with .NET on Azure/vs-aspnetcoremvc-site/Properties/PublishProfiles/ak-appservice-site - Web Deploy.pubxml.user
